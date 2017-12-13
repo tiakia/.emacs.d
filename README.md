@@ -1,4 +1,4 @@
-# .emacs.d 我的emacs配置
+# .emacs.d 我的emacs配置 参考大神 Steve Purcell
 ### tk-quick 要加入系统path 启用ag 全局搜索
 ### 模板功能 yas
 ### 自动补全 auto-complete
