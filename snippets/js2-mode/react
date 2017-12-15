@@ -17,10 +17,10 @@ export default class $1 extends Component {
 
         };
      }
-     componentWillmount(){
+     componentWillMount(){
 
      }
-     componentDidmount(){
+     componentDidMount(){
 
      }
      componentWillReceiveProps(nextProps){
