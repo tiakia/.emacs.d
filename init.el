@@ -1,7 +1,7 @@
 ;; -*- lexical-binding: t -*-
 
-;;; This file bootstraps the configuration, which is divided into
-;;; a number of other files.
+;; This file bootstraps the configuration, which is divided into
+;; a number of other files.
 (add-to-list 'load-path (expand-file-name "lisp" user-emacs-directory))
 (require 'init-benchmarking) ;; 测量启动时间
 
@@ -58,7 +58,7 @@
 (require 'init-smex)
 ;;(require 'init-ivy)
 (require 'init-hippie-expand)
-(require 'init-company)
+;;(require 'init-company) ;;自动补全
 (require 'init-windows)
 (require 'init-sessions)
 (require 'init-fonts)
@@ -111,7 +111,6 @@
 
 (when *spell-check-support-enabled*
   (require 'init-spelling))
-
 (require 'init-misc)
 
 (require 'init-folding)
@@ -152,7 +151,6 @@
 ;; Locales (setting them earlier in this file doesn't work in X)
 ;;----------------------------------------------------------------------------
 (require 'init-locales)
-
 
 ;;----------------------------------------------------------------------------
 ;; 田凯自己的开始
