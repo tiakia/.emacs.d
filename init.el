@@ -56,9 +56,9 @@
 
 (require 'init-recentf)
 (require 'init-smex)
-;;(require 'init-ivy)
+(require 'init-ivy)
 (require 'init-hippie-expand)
-;;(require 'init-company) ;;自动补全
+(require 'init-company) ;;自动补全
 (require 'init-windows)
 (require 'init-sessions)
 (require 'init-fonts)
@@ -74,31 +74,30 @@
 ;;(require 'init-github)
 
 (require 'init-projectile)
-
 (require 'init-compile)
 ;;(require 'init-crontab)
 (require 'init-textile)
 (require 'init-markdown)
-(require 'init-csv)
+;;(require 'init-csv)
 (require 'init-erlang)
 (require 'init-javascript)
-(require 'init-php)
-;;(require 'init-org)
+;;(require 'init-php)
+(require 'init-org)
 ;;(require 'init-nxml)
 (require 'init-html)
 (require 'init-css)
 ;;(require 'init-haml)
-(require 'init-python-mode)
+;;(require 'init-python-mode)
 (unless (version<= emacs-version "24.3")
   (require 'init-haskell))
 (require 'init-elm)
-(require 'init-ruby-mode)
-(require 'init-rails)
-(require 'init-sql)
+;;(require 'init-ruby-mode)
+;;(require 'init-rails)
+;;(require 'init-sql)
 (require 'init-rust)
 (require 'init-toml)
 (require 'init-yaml)
-(require 'init-docker)
+;;(require 'init-docker)
 (maybe-require-package 'terraform-mode)
 
 (require 'init-paredit)
@@ -110,7 +109,8 @@
 (require 'init-common-lisp)
 
 (when *spell-check-support-enabled*
-  (require 'init-spelling))
+  ;;(require 'init-spelling)
+  )
 (require 'init-misc)
 
 (require 'init-folding)
@@ -151,7 +151,6 @@
 ;; Locales (setting them earlier in this file doesn't work in X)
 ;;----------------------------------------------------------------------------
 (require 'init-locales)
-
 ;;----------------------------------------------------------------------------
 ;; 田凯自己的开始
 ;;----------------------------------------------------------------------------
