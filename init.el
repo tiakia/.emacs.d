@@ -37,22 +37,22 @@
 ;;----------------------------------------------------------------------------
 
 (require-package 'wgrep)
-(require-package 'project-local-variables)
-(require-package 'diminish)
-(require-package 'scratch)
-(require-package 'command-log-mode)
+;;(require-package 'project-local-variables)
+;;(require-package 'diminish)
+;;(require-package 'scratch)
+;;(require-package 'command-log-mode)
 
-(require 'init-frame-hooks)
+;;(require 'init-frame-hooks)
 (require 'init-xterm)
 (require 'init-themes)
 (require 'init-osx-keys)
 (require 'init-gui-frames)
 (require 'init-dired)
-(require 'init-isearch)
+;;(require 'init-isearch)
 (require 'init-grep)
 (require 'init-uniquify)
 (require 'init-ibuffer)
-(require 'init-flycheck)
+(require 'init-flycheck) ;;语法检查
 
 (require 'init-recentf)
 (require 'init-smex)
@@ -79,7 +79,7 @@
 (require 'init-textile)
 (require 'init-markdown)
 ;;(require 'init-csv)
-(require 'init-erlang)
+;;(require 'init-erlang)
 (require 'init-javascript)
 ;;(require 'init-php)
 (require 'init-org)
@@ -94,9 +94,9 @@
 ;;(require 'init-ruby-mode)
 ;;(require 'init-rails)
 ;;(require 'init-sql)
-(require 'init-rust)
-(require 'init-toml)
-(require 'init-yaml)
+;;(require 'init-rust)
+;;(require 'init-toml)
+;;(require 'init-yaml)
 ;;(require 'init-docker)
 (maybe-require-package 'terraform-mode)
 
@@ -156,7 +156,7 @@
 ;;----------------------------------------------------------------------------
 (require 'init-pyim)
 (require 'init-yas)
-(require 'init-auto-complete)
+;;(require 'init-auto-complete)
 (require 'init-ivy-t)
 ;;----------------------------------------------------------------------------
 ;; 田凯自己的结束
