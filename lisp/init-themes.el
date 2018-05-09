@@ -3,7 +3,13 @@
 (require 'color-theme)
 (color-theme-initialize)
 ;; 这个是你选择的主题，后面的calm forest就是它的名字，注意使用小写。
-(color-theme-calm-forest)
+;;(color-theme-calm-forest)
+;; solarized aalto-light subtle-hacker gnome2 gray30 green-kingsajz
+;; robin-hood white-on-grey bharadwaj bharadwaj-slate
+;; charcoal-black cheap-goldenrod
+(color-theme-subtle-hacker)
+
+
 ;; ;; If you don't customize it, this is the theme you get.
 ;; (setq-default custom-enabled-themes '(tango-dark))
 

@@ -1,0 +1,8 @@
+# -*- mode: snippet -*-
+# name: createBy
+# key: createBy
+# --
+/*
+*  功能：$1
+*  create by tiankai on `(format-time-string "%c")`
+*/
