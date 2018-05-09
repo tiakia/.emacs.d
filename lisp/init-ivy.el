@@ -50,7 +50,8 @@ instead."
                        (projectile-project-root)
                      (error default-directory)))))
         (counsel-ag initial-input dir)))
-    (global-set-key (kbd "M-?") 'sanityinc/counsel-ag-project)))
+    (global-set-key (kbd "C-c k") 'sanityinc/counsel-ag-project)
+    ))
 
 
 (when (maybe-require-package 'swiper)
@@ -59,9 +60,9 @@ instead."
       "Use `swiper' to search for the symbol at point."
       (interactive (list (thing-at-point 'symbol)))
       (swiper sym))
-
-    (define-key ivy-mode-map (kbd "M-s /") 'sanityinc/swiper-at-point)))
-
+    (global-set-key "\C-s" 'swiper)
+    ;;(define-key ivy-mode-map (kbd "\C-s") 'sanityinc/swiper-at-point)
+    ))
 
 
 (provide 'init-ivy)

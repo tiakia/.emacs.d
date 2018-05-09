@@ -1,6 +1,12 @@
 (ivy-mode 1)
-(setq ivy-use-virtual-buffers t)
-(setq enable-recursive-minibuffers t)
+(setq-default ivy-use-virtual-buffers t
+              ivy-virtual-abbreviate 'fullpath
+              ivy-count-format ""
+              projectile-completion-system 'ivy
+              ivy-initial-inputs-alist
+              '((man . "^")
+                (woman . "^")))
+
 (global-set-key "\C-s" 'swiper)
 (global-set-key (kbd "C-c C-r") 'ivy-resume)
 (global-set-key (kbd "<f6>") 'ivy-resume)
