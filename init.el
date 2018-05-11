@@ -1,7 +1,9 @@
+;;; package --- init
 ;; -*- lexical-binding: t -*-
 
 ;; This file bootstraps the configuration, which is divided into
 ;; a number of other files.
+;;; Code:
 (add-to-list 'load-path (expand-file-name "lisp" user-emacs-directory))
 (require 'init-benchmarking) ;; 测量启动时间
 
@@ -37,13 +39,13 @@
 ;;----------------------------------------------------------------------------
 
 (require-package 'wgrep)
-;;(require-package 'project-local-variables)
-;;(require-package 'diminish)
-;;(require-package 'scratch)
-;;(require-package 'command-log-mode)
+(require-package 'project-local-variables)
+(require-package 'diminish)
+(require-package 'scratch)
+(require-package 'command-log-mode)
 
-;;(require 'init-frame-hooks)
-(require 'init-xterm)
+(require 'init-frame-hooks)
+;;(require 'init-xterm)
 (require 'init-themes)
 (require 'init-osx-keys)
 (require 'init-gui-frames)
@@ -77,16 +79,16 @@
 (require 'init-compile)
 ;;(require 'init-crontab)
 (require 'init-textile)
-(require 'init-markdown)
+;;(require 'init-markdown)
 ;;(require 'init-csv)
 ;;(require 'init-erlang)
 (require 'init-javascript)
 ;;(require 'init-php)
-;;(require 'init-org)
-;;(require 'init-nxml)
+(require 'init-org)
+(require 'init-nxml)
 (require 'init-html)
 (require 'init-css)
-;;(require 'init-haml)
+(require 'init-haml)
 ;;(require 'init-python-mode)
 (unless (version<= emacs-version "24.3")
   (require 'init-haskell))
@@ -109,7 +111,7 @@
 (require 'init-common-lisp)
 
 (when *spell-check-support-enabled*
-  ;;(require 'init-spelling)
+  (require 'init-spelling)
   )
 (require 'init-misc)
 
@@ -121,7 +123,7 @@
 (require-package 'gnuplot)
 (require-package 'lua-mode)
 (require-package 'htmlize)
-;;(require-package 'dsvn)
+(require-package 'dsvn)
 (when *is-a-mac*
   (require-package 'osx-location))
 (maybe-require-package 'regex-tool)
@@ -156,7 +158,7 @@
 ;;----------------------------------------------------------------------------
 (require 'init-pyim)
 (require 'init-yas)
-(require 'init-nyan)
+(require 'init-mode-line)
 ;;----------------------------------------------------------------------------
 ;; 田凯自己的结束
 ;;----------------------------------------------------------------------------
@@ -172,4 +174,4 @@
 ;; Local Variables:
 ;; coding: utf-8
 ;; no-byte-compile: t
-;; End
+;;; init.el ends here

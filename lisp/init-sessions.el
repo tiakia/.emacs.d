@@ -37,14 +37,11 @@
 ;; save a bunch of variables to the desktop file
 ;; for lists specify the len of the maximal saved data also
 (setq desktop-globals-to-save
-      (append '((comint-input-ring        . 50)
-                (compile-history          . 30)
+      (append '(
                 desktop-missing-file-warning
                 (file-name-history        . 100)
                 (ivy-history              . 100)
-                (magit-read-rev-history   . 50)
                 (minibuffer-history       . 50)
-                (query-replace-history    . 60)
                 register-alist
                 (search-ring              . 20)
                 tags-table-list)))
