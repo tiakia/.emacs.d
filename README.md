@@ -1,7 +1,8 @@
 从 purcell 大神 forked 的过来的代码
 - master 分支是 Windows 正在用的配置
 - base 分支是在purcell上基础的修改，以后重新配置可以基于这个来
-- Ubuntu 是在Ubuntu上的配置 emacs 版本是 25.2的
+- ubuntu 是在Ubuntu上的配置 emacs 版本是 25.2的
+- purcell 是 purcell 大神 master 分支的代码
 
 ## 安装
 
