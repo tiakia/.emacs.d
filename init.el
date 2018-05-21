@@ -1,4 +1,5 @@
 ;;; package --- init
+;;; Commentary:
 ;; -*- lexical-binding: t -*-
 
 ;; This file bootstraps the configuration, which is divided into
