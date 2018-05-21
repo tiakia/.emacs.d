@@ -20,7 +20,7 @@
       (list ""
             'mode-line-mule-info
             'mode-line-modified
-            " ♛ "
+            " ❤ "
             'mode-line-buffer-identification
             "  (%l,%c)  "
             "("
