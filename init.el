@@ -172,7 +172,6 @@
 (require 'init-local nil t)
 
 
-
 (provide 'init)
 
 ;; Local Variables:
