@@ -14,7 +14,10 @@ git clone https://github.com/tiakia/.emacs.d.git ~/.emacs.d
 1. yas模板功能
 2. 彩虹猫
 3. color-themes 主题
-4. web-mode  
-5. pyim 中文输入法
+4. ag
+5. web-mode  
+6. pyim 中文输入法
 
-前三个已经下载到 plugins 文件夹里了，4 和 5  需要 `package-install <name>` 安装一下
+前四个已经下载到 plugins 文件夹里了，5 和 6  需要 `package-install <name>` 安装一下
+
+ag - 需要 `tk-quick` 这个文件夹配置到环境变量里，可以全局搜索代码
