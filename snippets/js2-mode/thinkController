@@ -1,0 +1,236 @@
+# -*- mode: snippet -*-
+# name: thinkController
+# key: thinkController
+# --
+'use strict';
+
+const BaseRest = require('./rest.js');
+/**
+ * ${1: fileName} 控制器
+ * create by tiankai `(format-time-string "%F %R")`
+ * @type {module.exports}
+ */
+module.exports = class extends BaseRest {
+
+    constructor(...args) {
+        super(...args);
+    }
+
+    /**
+     *
+     * @api {POST} ${1: fileName}/insert   新增
+     * @apiName    insert
+     * @apiGroup ${1: fileName}
+     * @apiVersion 1.0.0
+     * @apiDescription
+     * create by tiankai `(format-time-string "%F %R")`
+     *
+     * @apiUse RequestHeader
+     * @apiUse RequestSuccess
+     * @apiUse RequestError
+     *
+     * @apiParam {string} name 名称
+     * @apiParam {Number} type 类型0为菜单1为按钮
+     * @apiParam {string} href [?]链接地址
+     *
+     * @apiSuccessExample Success-Response:
+     * {
+     * //新增条目主键值
+     * }
+     *
+     */
+    async insertAction() {
+        try {
+            let now = think.datetime(new Date());
+            let _user = this.ctx.state.userInfo; //当前登录的用户信息
+            let data = this.post();
+            let result = this.convertToEntity(data);
+            result.id = think.uuid();
+            result.create_by = _user.id;
+            result.create_date = now;
+            result.update_by = _user.id;
+            result.update_date = now;
+            result.del_flag = 0;
+            let id = await this.serviceInstance.insert(result).catch(function (error) {
+                throw  error;
+            });
+            this.dbLogInfo("${NAME}管理", `【成功】新增单条${NAME}:${result.id}`);
+            return this.success(result.id);
+        } catch (error) {
+            return this.fail(error.message);
+        }
+    }
+
+    /**
+     *
+     * @api {PUT} ${1: fileName}/edit   编辑
+     * @apiName    edit
+     * @apiGroup ${1: fileName}
+     * @apiVersion 1.0.0
+     * @apiDescription
+     * create by tiankai `(format-time-string "%F %R")`
+     *
+     * @apiUse RequestHeader
+     * @apiUse RequestSuccess
+     * @apiUse RequestError
+     *
+     * @apiParam {uuid} id 主键
+     * @apiParam {string} name 名称
+     * @apiParam {Number} sort [?]排序
+     *
+     * @apiSuccessExample Success-Response:
+     * {
+     * //变更条目数
+     * }
+     *
+     */
+    async editAction() {
+        try {
+            let now = think.datetime(new Date());
+            let _user = this.ctx.state.userInfo; //当前登录的用户信息
+            let data = this.post();
+            let oldObj = await this.serviceInstance.get({ id: this.id });
+            if (think.isNullOrUndefined(oldObj)) {
+                throw new Error('model non-exist');
+            }
+            //如不需要更新某值则去掉
+            delete data.create_by;
+            delete data.create_date;
+            delete data.del_flag;
+            let result = this.convertToEntity(data,oldObj);
+            result.update_by = _user.id;
+            result.update_date = now;
+            let changeRows = await this.serviceInstance.edit(result);
+            if (changeRows > 0)
+                this.dbLogInfo("${NAME}管理", `【成功】编辑单条${NAME}:${data.id}`);
+            else
+                this.dbLogInfo("${NAME}管理", `【失败】编辑单条${NAME}:${data.id}`);
+            return this.success(changeRows);
+        } catch (error) {
+            throw error;
+            // return this.fail(error.message);
+        }
+    }
+
+
+    /**
+     *
+     * @api {DELETE} ${1: fileName}/remove   删除
+     * @apiName    remove
+     * @apiGroup ${1: fileName}
+     * @apiVersion 1.0.0
+     * @apiDescription
+     * create by tiankai `(format-time-string "%F %R")`
+     *
+     * @apiUse RequestHeader
+     * @apiUse RequestSuccess
+     * @apiUse RequestError
+     *
+     * @apiParam {uuid} id 主键
+     *
+     * @apiSuccessExample Success-Response:
+     * {
+     * //变更条目数
+     * }
+     *
+     */
+    async removeAction() {
+        try {
+            let now = think.datetime(new Date());
+            let _model = this.serviceInstance.get({id: this.id});
+            if (think.isNullOrUndefined(_model)) {
+                throw new Error('model non-exist');
+            }
+            let _user = this.ctx.state.userInfo; //当前登录的用户信息
+            console.log(_user);
+            let changeRows = await this.serviceInstance.remove(this.id, _user.id);
+            if (changeRows > 0)
+                this.dbLogInfo("${NAME}管理", `【成功】删除单条${NAME}:${this.id}`);
+            else
+                this.dbLogInfo("${NAME}管理", `【失败】删除单条${NAME}:${this.id}`);
+            return this.success(changeRows);
+        }
+        catch (error) {
+            throw error;
+        }
+    }
+
+
+    /**
+     *
+     * @api {GET} ${1: fileName}/get  查询单条
+     * @apiName    get
+     * @apiGroup ${1: fileName}
+     * @apiVersion 1.0.0
+     * @apiDescription
+     * create by tiankai `(format-time-string "%F %R")`
+     *
+     * @apiUse RequestHeader
+     * @apiUse RequestSuccess
+     * @apiUse RequestError
+     *
+     * @apiParam {uuid} id 主键
+     *
+     * @apiSuccessExample Success-Response:
+     * {
+     * //获取${1: fileName}的详情
+     * }
+     *
+     */
+    async getAction() {
+        let _user = this.ctx.state.userInfo;//当前登录用户
+        let result;
+        let reqData = this.get();//获取get参数
+        let searchObj = this.convertToEntity(reqData);//转换为实体属性
+        try {
+            result = await this.serviceInstance.get({id: reqData.id});
+            return this.success(result);
+        } catch (err) {
+            return this.fail(err.message);
+        }
+    }
+
+    /**
+     *
+     * @api {GET} ${1: fileName}/gets 查询所有可分页
+     * @apiName    gets
+     * @apiGroup ${1: fileName}
+     * @apiVersion 1.0.0
+     * @apiDescription
+     * create by tiankai `(format-time-string "%F %R")`
+     *
+     * @apiUse RequestHeader
+     * @apiUse RequestSuccess
+     * @apiUse RequestError
+     *
+     * @apiUse RequestPagingParam
+     *
+     * @apiParam {Number} type [?]类型 0为菜单1为按钮
+     * @apiParam {uuid} system_id [?]系统id
+     * @apiParam {String} icon [?][like]图标
+     *
+     * @apiSuccessExample Success-Response:
+     * {
+     * //获取${1: fileName}详细信息
+     * }
+     *
+     */
+    async getsAction() {
+        let _user = this.ctx.state.userInfo;//当前登录用户
+        let result;
+        let reqData = this.get();//获取get参数
+        let searchObj = this.convertToEntity(reqData);//转换为实体属性
+        let page = this.ctx.state.pagination;//分页相关
+        try {
+            if (page.isPage) {
+                result = await this.serviceInstance.getListForPage(searchObj, page);
+            } else {
+                result = await this.serviceInstance.getList(searchObj, searchObj.sort);
+            }
+            return this.success(result);
+        } catch (err) {
+            return this.fail(err.message);
+        }
+    }
+
+}

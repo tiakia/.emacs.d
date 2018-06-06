@@ -6,8 +6,8 @@
 * Author: tiankai
 * Github: https://github.com/tiakia
 * Email: tiankai0426@sina.com
-* Page: $1
-* Date: `(format-time-string "%c")`
+* Page: ${1: pageName}
+* Date: `(format-time-string "%F %R")`
 */
 
 import React, { Component } from 'react';
@@ -24,7 +24,9 @@ export default class $2 extends Component {
      }
      render(){
          return(
+         <div id="app">
 
+         </div>
          );
      }
 }

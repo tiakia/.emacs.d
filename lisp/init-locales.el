@@ -1,3 +1,6 @@
+;;; package --- locales
+;;; Commentary:
+;;; Code:
 (defun sanityinc/utf8-locale-p (v)
   "Return whether locale string V relates to a UTF-8 locale."
   (and v (string-match "UTF-8" v)))
@@ -18,3 +21,4 @@
   (prefer-coding-system 'utf-8))
 
 (provide 'init-locales)
+;;; init-locales ends here

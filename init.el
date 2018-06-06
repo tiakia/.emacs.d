@@ -1,3 +1,6 @@
+;;; package --- init
+;;; Commentary:
+;;; Code:
 ;; -*- lexical-binding: t -*-
 (setq debug-on-error t)
 
@@ -108,7 +111,7 @@
 (require 'init-yaml)
 (require 'init-docker)
 (require 'init-terraform)
-;;(require 'init-nix)
+(require 'init-nix)
 (maybe-require-package 'nginx-mode)
 
 (require 'init-paredit)
@@ -127,7 +130,7 @@
 (require 'init-dash)
 
 ;;(require 'init-twitter)
-;; (require 'init-mu)
+;;(require 'init-mu)
 (require 'init-ledger)
 ;; Extra packages which don't require any configuration
 
@@ -178,3 +181,4 @@
 ;; coding: utf-8
 ;; no-byte-compile: t
 ;; End:
+;;; init ends here

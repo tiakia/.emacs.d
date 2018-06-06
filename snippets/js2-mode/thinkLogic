@@ -1,0 +1,77 @@
+# -*- mode: snippet -*-
+# name: thinkLogic
+# key: thinkLogic
+# --
+/**
+ * ${1 : fileName} logic
+ * create by tiankai `(format-time-string "%F %R")`
+ * @type {module.exports}
+ */
+module.exports = class extends think.Logic {
+
+    /**
+     * 新增验证
+     * create by tiankai `(format-time-string "%F %R")`
+     */
+    insertAction() {
+        this.allowMethods = 'POST'; //  只允许 POST 请求类型
+        this.rules = {
+            //parent_id: {trim: true, uuid: true,},
+            //name: {string: true, required: true, trim: true},
+            //type: {int: {min: 0, max: 1}, trim: true, required: true,},
+            remarks: {string: true, trim: true},
+        };
+    }
+
+    /**
+     * 编辑验证
+     * create by tiankai `(format-time-string "%F %R")`
+     */
+    editAction() {
+        this.allowMethods = 'put';
+        this.rules = {
+            id: {uuid: true, required: true, trim: true,},
+            //parent_id: {trim: true, uuid: true,},
+            //name: {string: true, required: true, trim: true},
+            //type: {int: {min: 0, max: 1}, trim: true, required: true,},
+            remarks: {string: true, trim: true},
+        };
+    }
+
+    /**
+     * 删除验证
+     * create by tiankai `(format-time-string "%F %R")`
+     */
+    removeAction() {
+        this.allowMethods = 'delete';
+        this.rules = {
+            id: {uuid: true, required: true, trim: true, method: 'GET'},
+        };
+    }
+
+    /**
+     * 获取单条验证
+     * create by tiankai `(format-time-string "%F %R")`
+     */
+    getAction() {
+        this.allowMethods = 'GET';
+        this.rules = {
+            id: {uuid: true, required: true, trim: true},
+        };
+    }
+
+    /**
+     * 获取多条验证
+     * create by tiankai `(format-time-string "%F %R")`
+     */
+    getsAction() {
+        this.allowMethods = 'GET';
+        this.rules = {
+             //parent_id: {trim: true, uuid: true,},
+            //name: {string: true, required: true, trim: true},
+            //type: {int: {min: 0, max: 1}, trim: true, required: true,},
+            remarks: {string: true, trim: true},
+        };
+    }
+};
+

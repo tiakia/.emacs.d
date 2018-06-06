@@ -1,0 +1,178 @@
+# -*- mode: snippet -*-
+# name: thinkService
+# key: thinkService
+# --
+'use strict';
+const BaseService = require('./base.js');
+
+/**
+ * ${1: fileName} 逻辑层
+ * create by tiankai `(format-time-string "%F %R")`
+ */
+module.exports = class extends BaseService {
+
+    constructor(...args) {
+        super(...args);
+    }
+
+    /**
+     * 按照信息查询列表
+     * create by tiankai `(format-time-string "%F %R")`
+     * @param {object} searchObj 查询参数
+     * @param {string} sort 排序可以按照model的order条件组合 默认sort 降序排列
+     * @returns {Promise}
+     */
+    async getList(searchObj, sort) {
+        let whereObj = {};
+        /*
+        if (searchObj.type)
+            whereObj.type = searchObj.type;
+        else if (searchObj.parent_id) {
+            whereObj._complex = {
+                parent_id: searchObj.parent_id,
+                parent_ids: ['like', `%,${searchObj.parent_id},%`],
+                _logic: 'or'
+            };
+        }  else if (searchObj.icon) {
+            whereObj.icon = ['like', `%${searchObj.icon}%`];
+        } else if (searchObj.is_enable) {
+            whereObj.is_enable = searchObj.is_enable;
+        }
+        if (think.isNullOrUndefined(sort)) {
+            sort = "id desc";
+        }
+        */
+        let result = this.modelInstance.getList(whereObj, sort);
+        return result;
+    }
+
+    /**
+     * 分页查询信息列表
+     * create by tiankai `(format-time-string "%F %R")`
+     * @param {object} searchObj 查询参数
+     * @param {string} page 分页参数
+     * @returns {Promise}
+     */
+    async getListForPage(searchObj, page) {
+        let whereObj = {};
+        /*
+        if (searchObj.type) {
+            whereObj.type = searchObj.type;
+        } else if (searchObj.parent_id) {
+            whereObj._complex = {
+                parent_id: searchObj.parent_id,
+                parent_ids: ['like', `%,${searchObj.parent_id},%`],
+                _logic: 'or'
+            };
+        }  else if (searchObj.icon) {
+            whereObj.icon = ['like', `%${searchObj.icon}%`];
+        } else if (searchObj.is_enable) {
+            whereObj.is_enable = searchObj.is_enable;
+        }
+        */
+        let order=`${(!page.isOrder || !page.order) ? "id" : page.order} ${(!page.isSort || !page.sortBy) ? "asc" : page.sortBy}`;
+        let result = this.modelInstance.getListForPage(
+            page.pageNo,
+            page.pageSize,
+            whereObj,
+            order);
+        return result;
+    }
+
+    /**
+     * 按照信息查询数量
+     * create by tiankai `(format-time-string "%F %R")`
+     * @param {object} 查询参数
+     * @returns {Promise}
+     */
+    async getCount(searchObj) {
+        if (!think.isObject(searchObj)) {
+            throw new Error("searchObj is not object");
+        }
+        let whereObj = {};
+        /*
+        if (searchObj.type)
+            whereObj.type = searchObj.type;
+        else if (searchObj.parent_id) {
+            whereObj._complex = {
+                parent_id: searchObj.parent_id,
+                parent_ids: ['like', `%,${searchObj.parent_id},%`],
+                _logic: 'or'
+            };
+        }else if (searchObj.icon) {
+            whereObj.icon = ['like', `%${searchObj.icon}%`];
+        } else if (searchObj.is_enable) {
+            whereObj.is_enable = searchObj.is_enable;
+        } 
+        */
+        let result = this.modelInstance.getCount(searchObj);
+        return result;
+    }
+
+    /**
+     * 按照信息查询单条记录
+     * create by tiankai `(format-time-string "%F %R")`
+     * @param {object} 查询参数
+     * @returns {Promise}
+     */
+    async get(searchObj) {
+        if (think.isObject(searchObj)) {
+            let whereObj = {};
+            if (searchObj.id)
+                whereObj.id = searchObj.id;
+           else 
+                throw new Error("searchObj  no qualified property");
+            let result = this.modelInstance.get(whereObj);
+            return result;
+        } else {
+            throw new Error("searchObj is not object");
+        }
+    }
+
+    /**
+     * 新增单条或多条数据
+     * create by tiankai `(format-time-string "%F %R")`
+     * @param {object|array} obj
+     * @returns {Promise|int|int[]}  返回单条的插入主键或主键列表
+     */
+    async insert(obj) {
+        if (think.isNullOrUndefined(obj)) {
+            throw new Error("obj is null or undefined");
+        } else {
+           
+            return this.modelInstance.insert(obj);
+        }
+    }
+
+    /**
+     * 编辑单条或多条数据
+     * create by tiankai `(format-time-string "%F %R")`
+     * @param {object|array} obj 编辑对象
+     * @returns {Promise|int}  返回影响的行数
+     */
+    async edit(obj) {
+        if (think.isNullOrUndefined(obj)) {
+            throw new Error("obj is null or undefined");
+        } else {
+            return this.modelInstance.edit(obj);
+        }
+    }
+
+    /**
+     * 删除单条
+     * create by tiankai `(format-time-string "%F %R")`
+     * @param {uuid} id 主键
+     * @param {uuid} update_by 操作人
+     * @returns {Promise|int}  返回影响的行数
+     */
+    async remove(id, update_by) {
+        let now = think.datetime(new Date());
+        var obj = {
+            id: id,
+            update_by: update_by,
+            update_date: now,
+            del_flag: 1
+        }
+        return this.edit(obj);
+    }
+}

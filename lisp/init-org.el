@@ -1,3 +1,6 @@
+;;; package --- org
+;;; Commentary:
+;;; Code:
 (when *is-a-mac*
   (maybe-require-package 'grab-mac-link))
 
@@ -378,3 +381,4 @@ typical word processor."
 
 
 (provide 'init-org)
+;;; init-org ends here
