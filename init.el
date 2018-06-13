@@ -22,11 +22,14 @@
 ;;----------------------------------------------------------------------------
 ;; Adjust garbage collection thresholds during startup, and thereafter
 ;;----------------------------------------------------------------------------
-(let ((normal-gc-cons-threshold (* 20 1024 1024))
-      (init-gc-cons-threshold (* 128 1024 1024)))
-  (setq gc-cons-threshold init-gc-cons-threshold)
-  (add-hook 'after-init-hook
-            (lambda () (setq gc-cons-threshold normal-gc-cons-threshold))))
+;; from spacemacs
+(setq gc-cons-threshold 100000000)
+
+;; (let ((normal-gc-cons-threshold (* 20 1024 1024))
+;;       (init-gc-cons-threshold (* 128 1024 1024)))
+;;   (setq gc-cons-threshold init-gc-cons-threshold)
+;;   (add-hook 'after-init-hook
+;;             (lambda () (setq gc-cons-threshold normal-gc-cons-threshold))))
 
 ;;----------------------------------------------------------------------------
 ;; Bootstrap config
@@ -182,3 +185,4 @@
 ;; no-byte-compile: t
 ;; End:
 ;;; init ends here
+(put 'set-goal-column 'disabled nil)

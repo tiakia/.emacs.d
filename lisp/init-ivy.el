@@ -54,7 +54,7 @@ instead."
                        (projectile-project-root)
                      (error default-directory)))))
         (counsel-ag initial-input dir)))
-    ;;(global-set-key (kbd "C-c k") 'sanityinc/counsel-ag-project)
+    (global-set-key (kbd "C-c k") 'counsel-ag)
     ))
 
 

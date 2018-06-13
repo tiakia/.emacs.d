@@ -1,0 +1,7 @@
+# -*- mode: snippet -*-
+# name: alert
+# key: alert
+# --
+{% alert ${1: info/success/warning/danger/no-icon} %}
+$2
+{% endalert %}

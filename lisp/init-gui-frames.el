@@ -1,3 +1,6 @@
+;;; package --- gui-frames
+;;; Commentary:
+;;; Code:
 ;;----------------------------------------------------------------------------
 ;; Stop C-z from minimizing windows under OS X
 ;;----------------------------------------------------------------------------
@@ -83,3 +86,4 @@
 
 
 (provide 'init-gui-frames)
+;;; init-gui-frames.el ends here

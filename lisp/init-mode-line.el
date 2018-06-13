@@ -22,20 +22,21 @@
             'mode-line-modified
             " ❤ "
             'mode-line-buffer-identification
-            "  (%l,%c)  "
-            "("
+            " [%l/"
+            (propertize "%I" 'face 'font-lock-constant-face) ;; size
+            "]  ("
             'mode-name
             ") "
-            '(vc-mode vc-mode)
+            ;; git info
+            `(vc-mode vc-mode)
             "  "
-            'mode-line-process
-            '(:eval (when nyan-mode (list (nyan-create))))
-            "  "
+            ;;'mode-line-process
+            ;;'(:eval (when nyan-mode (list (nyan-create))))
             (propertize (format-time-string "%a,%b/%d"))
             ))
 
-(nyan-mode t) ;;启动nyan-mode
-(setq-default nyan-bar-length 15)
+;;(nyan-mode t) ;;启动nyan-mode
+;;(setq-default nyan-bar-length 15)
 ;;(nyan-start-animation)
 ;;(setq-default nyan-wavy-trail t)
 ;;(setq-default nyan-cat-face-number 0)

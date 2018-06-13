@@ -1,0 +1,7 @@
+# -*- mode: snippet -*-
+# name: tab
+# key: tab
+# --
+<!-- tab ${1: js/css/html/result } -->
+     $2
+<!-- endtab -->

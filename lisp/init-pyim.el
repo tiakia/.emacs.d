@@ -1,6 +1,8 @@
 ;;; package --- pyim
 ;;; Commentary:
 ;; 灵拼
+(add-to-list 'load-path
+             "~/.emacs.d/plugins/pyim")
 (require 'pyim)
 (require 'pyim-basedict)
 
