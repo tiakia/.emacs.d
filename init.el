@@ -1,16 +1,18 @@
-;;; package --- init
+;;; init.el --- Load the full configuration -*- lexical-binding: t -*-
 ;;; Commentary:
+
+;; This file bootstraps the configuration, which is divided into
+;; a number of other files.
+
 ;;; Code:
-;; -*- lexical-binding: t -*-
+
+;; Produce backtraces when errors occur
 (setq debug-on-error t)
 
-;;; This file bootstraps the configuration, which is divided into
-;;; a number of other files.
-
-(let ((minver "24.3"))
+(let ((minver "24.4"))
   (when (version< emacs-version minver)
     (error "Your Emacs is too old -- this config requires v%s or higher" minver)))
-(when (version< emacs-version "24.5")
+(when (version< emacs-version "25.1")
   (message "Your Emacs is old, and some functionality in this config will be disabled. Please upgrade if possible."))
 
 (add-to-list 'load-path (expand-file-name "lisp" user-emacs-directory))
@@ -50,9 +52,8 @@
 ;; Load configs for specific features and modes
 ;;----------------------------------------------------------------------------
 
-(require-package 'wgrep)
 (require-package 'diminish)
-(require-package 'scratch)
+(maybe-require-package 'scratch)
 (require-package 'command-log-mode)
 
 (require 'init-frame-hooks)
@@ -75,7 +76,6 @@
 (require 'init-company)
 (require 'init-windows)
 (require 'init-sessions)
-(require 'init-fonts)
 (require 'init-mmm)
 
 (require 'init-editing-utils)
@@ -155,9 +155,11 @@
 ;;----------------------------------------------------------------------------
 ;; Allow access from emacsclient
 ;;----------------------------------------------------------------------------
-(require 'server)
-(unless (server-running-p)
-  (server-start))
+(add-hook 'after-init-hook
+          (lambda ()
+            (require 'server)
+            (unless (server-running-p)
+              (server-start))))
 
 ;;----------------------------------------------------------------------------
 ;; Variables configured via the interactive 'customize' interface
@@ -178,11 +180,11 @@
 (require 'init-local nil t)
 
 
+
 (provide 'init)
 
 ;; Local Variables:
 ;; coding: utf-8
 ;; no-byte-compile: t
 ;; End:
-;;; init ends here
-(put 'set-goal-column 'disabled nil)
+;;; init.el ends here
