@@ -1,0 +1,9 @@
+# -*- mode: snippet -*-
+# name: codetab
+# key: codetab
+# --
+{% tabbed_codeblock ${1: test.js} ${2: link}%}
+      <!-- tab ${3: js/css/html} -->
+           $4
+      <!-- endtab -->
+{% endtabbed_codeblock %}

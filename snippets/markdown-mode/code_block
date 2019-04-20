@@ -1,0 +1,7 @@
+# -*- mode: snippet -*-
+# name: code
+# key: code
+# --
+{% codeblock ${1: test.js} %}
+   $2
+{% endcodeblock %}

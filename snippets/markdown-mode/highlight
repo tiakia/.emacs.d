@@ -1,0 +1,5 @@
+# -*- mode: snippet -*-
+# name: hl
+# key: hl
+# --
+{% hl_text ${1: red/green/orange/success/danger} %}${2: text}{% endhl_text %}

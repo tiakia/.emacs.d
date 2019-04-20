@@ -1,0 +1,22 @@
+# -*- mode: snippet -*-
+# name: hexo
+# key: hexo
+# --
+---
+title: ${1: 标题}
+date: `(format-time-string "%F %R")`
+categories: ${2: 分类}
+tags: [${3: 标签}]
+keywords:
+- ${4: 关键词}
+clearReading: true
+thumbnailImage: ${5: 缩略图链接}
+thumbnailImagePosition: left  //缩略图显示的位置，上下左右都可以
+autoThumbnailImage: true
+metaAlignment: center  //文章页图片上的文字居中显示
+coverImage: http://ostu98x74.bkt.clouddn.com/cover/cover.jpg
+coverCaption: ${6: 大图下面的小标题}
+coverMeta: in
+coverSize: full
+comments: true
+---
