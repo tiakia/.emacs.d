@@ -75,8 +75,9 @@ instead."
       "Use `swiper' to search for the symbol at point."
       (interactive (list (thing-at-point 'symbol)))
       (swiper sym))
-
-    (define-key ivy-mode-map (kbd "M-s /") 'sanityinc/swiper-at-point)))
+    (global-set-key "\C-s" 'swiper)
+    ;;(define-key ivy-mode-map (kbd "M-s /") 'sanityinc/swiper-at-point)
+    ))
 
 
 (when (maybe-require-package 'ivy-xref)
