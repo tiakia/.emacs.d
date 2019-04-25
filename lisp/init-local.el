@@ -37,37 +37,53 @@
 (add-hook 'before-save-hook 'tide-format-before-save)
 
 (add-hook 'typescript-mode-hook #'setup-tide-mode)
+(add-hook 'web-mode-hook
+          (lambda ()
+            (when (string-equal "tsx?" (file-name-extension buffer-file-name))
+              (setup-tide-mode)
+              (unless (tide-current-server)
+                (tide-restart-server))
+              )
+            ))
 
 ;;; -------------------------------------------------------------
 
 ;; lsp-mode 使用 typescript-language-server 后端
-(require-package 'lsp-typescript)
+(add-to-list 'load-path
+             "~/.emacs.d/plugins/lsp-mode")
+(require 'lsp-mode)
 
-;; Javascript, Typescript and Flow support for lsp-mode
-;;
-;; Install:
-;;
-;; npm install -g typescript
-;; npm install -g typescript-language-server
-;;
-;; Fixed error "[tsserver] /bin/sh: /usr/local/Cellar/node/10.5.0_1/bin/npm: No such file or directory" :
-;;
-;; sudo ln -s /usr/local/bin/npm /usr/local/Cellar/node/10.5.0_1/bin/npm
-;;
-(add-hook 'js-mode-hook #'lsp-typescript-enable)
-(add-hook 'typescript-mode-hook #'lsp-typescript-enable) ;; for typescript support
-(add-hook 'web-mode #'lsp-typescript-enable) ;; for web-mode support
+(add-hook 'web-mode-hook #'lsp)
+(add-hook 'js2-mode-hook #'lsp)
+(add-hook 'js2-jsx-mode-hook #'lsp)
 
-(defun lsp-company-transformer (candidates)
-  (let ((completion-ignore-case t))
-    (all-completions (company-grab-symbol) candidates)))
+;; (require-package 'lsp-typescript)
 
-(defun lsp-js-hook nil
-  (make-local-variable 'company-transformers)
-  (push 'lsp-company-transformer company-transformers))
+;; ;; Javascript, Typescript and Flow support for lsp-mode
+;; ;;
+;; ;; Install:
+;; ;;
+;; ;; npm install -g typescript
+;; ;; npm install -g typescript-language-server
+;; ;;
+;; ;; Fixed error "[tsserver] /bin/sh: /usr/local/Cellar/node/10.5.0_1/bin/npm: No such file or directory" :
+;; ;;
+;; ;; sudo ln -s /usr/local/bin/npm /usr/local/Cellar/node/10.5.0_1/bin/npm
+;; ;;
+;; (add-hook 'js-mode-hook #'lsp-typescript-enable)
+;; (add-hook 'typescript-mode-hook #'lsp-typescript-enable) ;; for typescript support
+;; (add-hook 'web-mode #'lsp-typescript-enable) ;; for web-mode support
 
-(add-hook 'js-mode-hook 'lsp-js-hook)
-(add-hook 'web-mode-hook 'lsp-js-hook)
+;; (defun lsp-company-transformer (candidates)
+;;   (let ((completion-ignore-case t))
+;;     (all-completions (company-grab-symbol) candidates)))
+
+;; (defun lsp-js-hook nil
+;;   (make-local-variable 'company-transformers)
+;;   (push 'lsp-company-transformer company-transformers))
+
+;; (add-hook 'js-mode-hook 'lsp-js-hook)
+;; (add-hook 'web-mode-hook 'lsp-js-hook)
 ;; tide typeScript ends here
 
 ;;; -------------------------------------------------------------
@@ -93,7 +109,12 @@
 ;;; --------------------------------------------------------------
 
 ;; prettier code
+
+;; Installing on Windows
+;; First install chocolate
+;; Then choco install diffutils
 (require 'prettier-js)
+
 (add-hook 'js2-mode-hook 'prettier-js-mode)
 (add-hook 'web-mode-hook 'prettier-js-mode)
 (add-hook 'js2-jsx-mode-hook 'prettier-js-mode)
@@ -101,28 +122,70 @@
 
 ;;; --------------------------------------------------------------
 
+;;; mode-line-custom start
 (add-to-list 'load-path "~/.emacs.d/plugins/mode-line/nyan-mode")
 (require 'nyan-mode)
 
-;;(set-face-attribute 'mode-line nil :background "#454545" :foreground "#d5d2be")
-;;(set-face-attribute 'mode-line-buffer-id nil :foreground "#2c53ca" :background "#ccc19b")
-
-(setq system-time-locale "C")
+;; 简化 major-mode 的名字，替换表中没有的显示原名
+(defun codefalling//simplify-major-mode-name ()
+  "Return simplifyed major mode name."
+  (let* ((major-name (format-mode-line "%m"))
+         (replace-table '(ELisp "𝝀"
+                                Spacemacs\ buffer "𝓢"
+                                Python "𝝅"
+                                Shell ">"
+                                Markdown "𝓜"
+                                GFM "𝓜"
+                                Org "𝒪"
+                                Text "𝓣"
+                                Java "♨"
+                                Fundamental "ℱ"
+                                Web "ⓦ"
+                                ))
+         (replace-name (plist-get replace-table (intern major-name))))
+    (if replace-name replace-name major-name)))
 
 (setq default-mode-line-format
       (list ""
             'mode-line-mule-info
-            'mode-line-modified
+            ;;'mode-name
+            ;; 改写mode－name
+            "["
+            '(:eval (propertize (codefalling//simplify-major-mode-name) 'face 'font-lock-string-face
+                                'help-echo buffer-file-coding-system))
+            "]"
+            " ❤"
+            ;;'mode-line-modified
+            ;; 改写 mode－line-modified
+            " [" ;; insert vs overwrite mode, input-method in a tooltip
+            '(:eval (propertize (if overwrite-mode "Ovr" "Ins")
+                                'face 'font-lock-preprocessor-face
+                                'help-echo (concat "Buffer is in "
+                                                   (if overwrite-mode
+                                                       "overwrite"
+                                                     "insert") " mode")))
+
+            ;; was this buffer modified since the last save
+            '(:eval (when (buffer-modified-p)
+                      (concat ","  (propertize "Mo"
+                                               'face 'font-lock-warning-face
+                                               'help-echo "Buffer has been modified"))))
+
+            ;; is this buffer read-only?
+            '(:eval (when buffer-read-only
+                      (concat ","  (propertize "RO"
+                                               'face 'font-lock-type-face
+                                               'help-echo "Buffer is read-only"))))
+            "]"
+
             " ❤ "
             'mode-line-buffer-identification
-            " [%l/"
+            " [%l"
+            "/"
             (propertize "%I" 'face 'font-lock-constant-face) ;; size
-            "]  "
-            'mode-name
-            " "
+            "]"
             ;; git info
             `(vc-mode vc-mode)
-            "  "
             ;;'mode-line-process
             ;;'(:eval (when nyan-mode (list (nyan-create))))
             ))
@@ -192,6 +255,9 @@
 ;;; neotree start
 (add-to-list 'load-path "~/.emacs.d/plugins/neotree")
 (require 'neotree)
+(add-to-list 'load-path "~/.emacs.d/plugins/all-the-icons.el")
+(require 'all-the-icons)
+
 (global-set-key [f8] 'neotree-toggle)
 ;; need M-x [ret] package-install all-the-icons [ret]
 (setq neo-theme (if (display-graphic-p) 'icons 'arrow))
@@ -231,6 +297,7 @@
 (add-hook 'js2-mode-hook 'origami-mode)
 (add-hook 'js2-jsx-mode-hook 'origami-mode)
 (add-hook 'lisp-mode-hook 'origami-mode)
+(add-hook 'emacs-lisp-mode-hook 'origami-mode)
 (global-set-key (kbd "C-`") 'origami-toggle-node)
 
 ;; (use-package origami
