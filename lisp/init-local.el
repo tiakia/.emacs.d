@@ -141,6 +141,7 @@
                                 Java "♨"
                                 Fundamental "ℱ"
                                 Web "ⓦ"
+                                JSON "卐"
                                 ))
          (replace-name (plist-get replace-table (intern major-name))))
     (if replace-name replace-name major-name)))
@@ -156,6 +157,7 @@
             "]"
             " ❤"
             ;;'mode-line-modified
+            ;;" %* "
             ;; 改写 mode－line-modified
             " [" ;; insert vs overwrite mode, input-method in a tooltip
             '(:eval (propertize (if overwrite-mode "Ovr" "Ins")
@@ -176,14 +178,15 @@
                       (concat ","  (propertize "RO"
                                                'face 'font-lock-type-face
                                                'help-echo "Buffer is read-only"))))
-            "]"
-
-            " ❤ "
-            'mode-line-buffer-identification
-            " [%l"
+            "] "
+            ;;'mode-line-buffer-identification
+            ;; 改写 mode-line-buffer-dientification
+            '(:eval (propertize "%b " 'face 'font-lock-keyword-face
+                                'help-echo (buffer-file-name)))
+            "%l"
             "/"
             (propertize "%I" 'face 'font-lock-constant-face) ;; size
-            "]"
+            " "
             ;; git info
             `(vc-mode vc-mode)
             ;;'mode-line-process
@@ -293,11 +296,13 @@
 ;; Flexible text folding
 (require-package 'origami)
 (setq origami-show-fold-header t)
+
 (add-hook 'web-mode-hook 'origami-mode)
 (add-hook 'js2-mode-hook 'origami-mode)
 (add-hook 'js2-jsx-mode-hook 'origami-mode)
 (add-hook 'lisp-mode-hook 'origami-mode)
 (add-hook 'emacs-lisp-mode-hook 'origami-mode)
+
 (global-set-key (kbd "C-`") 'origami-toggle-node)
 
 ;; (use-package origami
