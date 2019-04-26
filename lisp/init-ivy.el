@@ -66,7 +66,9 @@ instead."
             (funcall search-function initial-input dir)))))
     (after-load 'ivy
       (add-to-list 'ivy-height-alist (cons 'counsel-ag 20)))
-    (global-set-key (kbd "M-?") 'sanityinc/counsel-search-project)))
+    (global-set-key (kbd "M-?") 'sanityinc/counsel-search-project)
+    (global-set-key (kbd "M-s /") 'counsel-ag)
+    ))
 
 
 (when (maybe-require-package 'swiper)
