@@ -13,6 +13,7 @@
 ;; - alpha
 ;; - neotree
 ;; - origami
+;; - prettier-js
 ;;;==========================================
 
 ;; tide typeScript
@@ -331,6 +332,15 @@
 
 
 ;;; --------------------------------------------------------------
+
+;;; 支持 org 导出为 markdown
+(setq org-export-backends (quote (ascii html icalendar latex md)))
+
+;;; prettier-js
+(require 'prettier-js)
+
+(add-hook 'js2-mode-hook 'prettier-js-mode)
+(add-hook 'web-mode-hook 'prettier-js-mode)
 
 (provide 'init-local)
 ;;; init-local ends here

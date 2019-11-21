@@ -5,3 +5,6 @@
 - `F10`设置透明度
 - 'C-`' 代码折叠
 - `M-s /` counsel-ag
+- `C-\` 切换为拼音输入
+－ `C-c C-c` 切换目录树显示的文件夹
+－ `M-x delete-directory` 删除文件夹
