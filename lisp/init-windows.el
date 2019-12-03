@@ -12,13 +12,57 @@
 ;;----------------------------------------------------------------------------
 (add-hook 'after-init-hook 'winner-mode)
 
-
-
 ;; Make "C-x o" prompt for a target window when there are more than 2
 (require-package 'switch-window)
 (setq-default switch-window-shortcut-style 'alphabet)
 (setq-default switch-window-timeout nil)
 (global-set-key (kbd "C-x o") 'switch-window)
+
+;; Quickly switch windows
+;;(require-package 'ace-window);
+;; (global-set-key (kbd "C-o") 'ace-window)
+;; (setq aw-background nil)
+;; (use-package ace-window
+;;              :functions (hydra-frame-window/body my-aw-window<)
+;;              :bind ([remap other-window] . ace-window)
+;;              :custom-face
+;;              (aw-leading-char-face ((t (:inherit error :bold t :height 1.1))))
+;;              (aw-mode-line-face ((t (:inherit mode-line-emphasis :bold t))))
+;;              :hook (after-init . ace-window-display-mode)
+;;              :config
+;;              ;; (setq aw-keys '(?a ?s ?d ?f ?g ?h ?j ?k ?l))
+
+;;              ;; https://github.com/abo-abo/ace-window/wiki/Hydra
+;;              ;; hydra-frame-window is designed from `ace-window' and
+;;              ;; matches aw-dispatch-alist with a few extra
+;;              (defhydra hydra-frame-window (:color red :hint nil)
+;;                "
+;; ^Frame^                 ^Window^      Window Size^^^^^^    ^Text Zoom^               (__)
+;; _0_: delete             _t_oggle        ^ ^ _k_ ^ ^            _=_                   (oo)
+;; _1_: delete others      _s_wap          _h_ ^+^ _l_            ^+^             /------\\/
+;; _2_: new                _d_elete        ^ ^ _j_ ^ ^            _-_            / |    ||
+;; _F_ullscreen            _o_ther         _b_alance^^^^          ^ ^        *  /\\---/\\  ~~  C-c w/C-x o w
+;; "
+;;                ("0" delete-frame :exit t)
+;;                ("1" delete-other-frames :exit t)
+;;                ("2" make-frame  :exit t)
+;;                ("b" balance-windows)
+;;                ("s" ace-swap-window)
+;;                ("F" toggle-frame-fullscreen)
+;;                ("t" toggle-window-split)
+;;                ("d" ace-delete-window :exit t)
+;;                ("o" ace-window :exit t)
+;;                ("-" text-scale-decrease)
+;;                ("=" text-scale-increase)
+;;                ("h" shrink-window-horizontally)
+;;                ("k" shrink-window)
+;;                ("j" enlarge-window)
+;;                ("l" enlarge-window-horizontally)
+;;                ("q" nil "quit"))
+;;              (add-to-list 'aw-dispatch-alist '(?w hydra-frame-window/body) t)
+;;              (bind-key "C-c w" #'hydra-frame-window/body))
+
+;;----------------------------------------------------------------------------
 
 
 ;;----------------------------------------------------------------------------

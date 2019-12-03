@@ -2,9 +2,24 @@
 ;;; Commentary:
 ;;; Code:
 
+;; This is only needed once, near the top of the file
+(eval-when-compile
+  ;; Following line is not needed if use-package.el is in ~/.emacs.d
+  (add-to-list 'load-path "~/.emacs.d/plugins/use-package")
+  (require 'use-package))
+
 ;; Set psersonal information
 (setq user-full-name "Tiankai"
       user-mail-address "tiankai0426@sina.com")
+
+;; Title
+(setq frame-title-format
+      '("Tiankai's Emacs - "
+        (:eval (if (buffer-file-name)
+                   (abbreviate-file-name (buffer-file-name))
+                 "%b"))))
+(setq icon-title-format frame-title-format)
+
 
 ;; set default font
 (set-default-font "Source Code Pro-12")

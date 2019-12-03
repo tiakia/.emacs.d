@@ -62,7 +62,7 @@
 (require 'init-osx-keys)
 (require 'init-gui-frames)
 (require 'init-dired)
-(require 'init-isearch)
+;;(require 'init-isearch)
 (require 'init-grep)
 (require 'init-uniquify)
 (require 'init-ibuffer)
@@ -75,7 +75,8 @@
 (require 'init-hippie-expand)
 (require 'init-company)
 (require 'init-windows)
-(require 'init-sessions)
+;; 启动文件的
+;;(require 'init-sessions)
 (require 'init-mmm)
 
 (require 'init-editing-utils)
@@ -135,6 +136,9 @@
 ;;(require 'init-twitter)
 ;;(require 'init-mu)
 (require 'init-ledger)
+;; 后来添加的 来自 Centaur Emacs
+(require 'init-calendar)
+(require 'init-persp)
 ;; Extra packages which don't require any configuration
 
 (require-package 'gnuplot)

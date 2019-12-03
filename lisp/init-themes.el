@@ -9,12 +9,12 @@
 
 (add-to-list 'load-path "~/.emacs.d/plugins/themes/color-theme")
 (require 'color-theme)
-(color-theme-initialize)
+;;(color-theme-initialize)
 ;; 这个是你选择的主题，后面的calm forest就是它的名字，注意使用小写。
 ;;(color-theme-calm-forest)
 ;;(color-theme-subtle-hacker)
 ;;(color-theme-sitaramv-solaris)
-(color-theme-gnome2)
+;;(color-theme-gnome2)
 ;;(color-theme-charcoal-black)
 ;;(color-theme-solarized)
 ;;(color-theme-aalto-light)
@@ -29,7 +29,7 @@
 
 (add-to-list 'load-path "~/.emacs.d/plugins/themes/alect-themes")
 (require 'alect-themes)
-;;(load-theme 'alect-dark t)
+(load-theme 'alect-dark t)
 
 ;; If you don't customize it, this is the theme you get.
 ;;(setq-default custom-enabled-themes '(alect-dark))
@@ -45,28 +45,28 @@
 ;;(add-hook 'after-init-hook 'reapply-themes)
 
 
-;;------------------------------------------------------------------------------
-;; Toggle between light and dark
-;;------------------------------------------------------------------------------
-(defun light ()
-  "Activate a light color theme."
-  (interactive)
-  (setq custom-enabled-themes '(sanityinc-tomorrow-day))
-  (reapply-themes))
+;; ;;------------------------------------------------------------------------------
+;; ;; Toggle between light and dark
+;; ;;------------------------------------------------------------------------------
+;; (defun light ()
+;;   "Activate a light color theme."
+;;   (interactive)
+;;   (setq custom-enabled-themes '(sanityinc-tomorrow-day))
+;;   (reapply-themes))
 
-(defun dark ()
-  "Activate a dark color theme."
-  (interactive)
-  (setq custom-enabled-themes '(sanityinc-tomorrow-bright))
-  (reapply-themes))
+;; (defun dark ()
+;;   "Activate a dark color theme."
+;;   (interactive)
+;;   (setq custom-enabled-themes '(sanityinc-tomorrow-bright))
+;;   (reapply-themes))
 
 
-(when (maybe-require-package 'dimmer)
-  (setq-default dimmer-fraction 0.15)
-  (add-hook 'after-init-hook 'dimmer-mode)
-  ;; TODO: file upstream as a PR
-  (after-load 'dimmer
-    (advice-add 'frame-set-background-mode :after (lambda (&rest args) (dimmer-process-all)))))
+;; (when (maybe-require-package 'dimmer)
+;;   (setq-default dimmer-fraction 0.15)
+;;   (add-hook 'after-init-hook 'dimmer-mode)
+;;   ;; TODO: file upstream as a PR
+;;   (after-load 'dimmer
+;;     (advice-add 'frame-set-background-mode :after (lambda (&rest args) (dimmer-process-all)))))
 
 
 (provide 'init-themes)

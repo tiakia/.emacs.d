@@ -6,6 +6,7 @@
 ;; Stop C-z from minimizing windows under OS X
 ;;----------------------------------------------------------------------------
 (defun sanityinc/maybe-suspend-frame ()
+  "Stop Cz from minimizing windows under OS X."
   (interactive)
   (unless (and *is-a-mac* window-system)
     (suspend-frame)))
@@ -62,7 +63,7 @@
   ;; Hint: Customize `ns-use-native-fullscreen'
   (global-set-key (kbd "M-ƒ") 'toggle-frame-fullscreen))
 
-;; TODO: use seethru package instead?
+;; Todo: use seethru package instead?
 (global-set-key (kbd "M-C-8") (lambda () (interactive) (sanityinc/adjust-opacity nil -2)))
 (global-set-key (kbd "M-C-9") (lambda () (interactive) (sanityinc/adjust-opacity nil 2)))
 (global-set-key (kbd "M-C-7") (lambda () (interactive) (modify-frame-parameters nil `((alpha . 100)))))

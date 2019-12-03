@@ -10,6 +10,7 @@
 (autoload 'mwheel-install "mwheel")
 
 (defun sanityinc/console-frame-setup ()
+  "Mouse in a terminal (Use shift to paste with middle button)."
   (xterm-mouse-mode 1) ; Mouse in a terminal (Use shift to paste with middle button)
   (mwheel-install))
 
