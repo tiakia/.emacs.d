@@ -493,9 +493,9 @@
   ;; To disable shortcut "jump" indicators for each section, set
   (setq dashboard-show-shortcuts nil)
   ;; To customize which widgets are displayed, you can use the following snippet
-  (setq dashboard-items '((recents  . 10)
+  (setq dashboard-items '((recents  . 20)
                           (bookmarks . 5)
-                          (projects . 5)
+                          (projects . 10)
                           (agenda . 5)
                           ))
   ;; To add icons to the widget headings and their items:

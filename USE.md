@@ -18,3 +18,6 @@
   - 新建org文件后，输入`**`
   - `C-c C-t` 改变TODO状态
   - `C-c C-s` 选择TODO的时间 (按住shift键，方向键选择日期)
+
+- 在 `~`目录下新建`org`文件夹，这里面新建的`*.org`文件里的`todo`项会展示在`dashboard`中
+  - 有时候打开出现乱码情况，可以这样解决`C-x <RET> r ( M-x revert-buffer-with-coding-system)` 来用指定的编码重新读入这个文件即可
