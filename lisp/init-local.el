@@ -233,6 +233,7 @@
   (unless (or sys/win32p (member "all-the-icons" (font-family-list)))
     (all-the-icons-install-fonts t))
   :config
+  (set-frame-font "Source Code Pro" t)
   (add-to-list 'all-the-icons-mode-icon-alist
                '(help-mode all-the-icons-faicon "info-circle" :height 1.1 :v-adjust -0.1 :face all-the-icons-purple))
   (add-to-list 'all-the-icons-mode-icon-alist
@@ -622,6 +623,7 @@
 (setq org-agenda-files '("~/org"))
 
 ;;; ----------------------------------------------------
+
 
 (provide 'init-local)
 ;;; init-local ends here

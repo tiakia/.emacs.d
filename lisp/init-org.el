@@ -292,7 +292,7 @@ typical word processor."
 ;; Save the running clock and all clock history when exiting Emacs, load it on startup
 (after-load 'org
   (org-clock-persistence-insinuate))
-(setq org-clock-persist t)
+(setq org-clock-persist nil)
 (setq org-clock-in-resume t)
 
 ;; Save clock data and notes in the LOGBOOK drawer

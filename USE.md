@@ -20,4 +20,12 @@
   - `C-c C-s` 选择TODO的时间 (按住shift键，方向键选择日期)
 
 - 在 `~`目录下新建`org`文件夹，这里面新建的`*.org`文件里的`todo`项会展示在`dashboard`中
-  - 有时候打开出现乱码情况，可以这样解决`C-x <RET> r ( M-x revert-buffer-with-coding-system)` 来用指定的编码重新读入这个文件即可
+  - 有时候打开出现乱码情况，可以这样解决:
+
+     1. `C-x RET r` （即 `revert-buffer-with-coding-system` 命令） 输入 “GBK” 回车
+     2. `C-x RET f` （即 `set-buffer-file-coding-system` 命令） 输入 “utf-8” 回车
+     3. `C-x C-s` 保存
+
+     或者在文件开头添加 `%% -*- coding: utf-8 -*-` 然后保存
+
+- `C-c a` 展示所有的 TODO列表

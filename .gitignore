@@ -53,3 +53,4 @@ site-lisp/package/
 /transient
 /pyim/dcache
 .lsp-*
+persp-confs

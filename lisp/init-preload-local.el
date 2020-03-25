@@ -20,12 +20,16 @@
                  "%b"))))
 (setq icon-title-format frame-title-format)
 
-
 ;; set default font
-(set-default-font "Source Code Pro-12")
+;; (set-default-font "Source Code Pro-11")
+
+(set-face-attribute
+ 'default nil
+ :font (font-spec :name "-adobe-Source Code Pro-extralight-italic-normal-*-*-*-*-*-m-0-iso10646-1"
+                  :size 11.0))
 
 ;; set frame
-;;设置窗口位置为屏库左上角(0,0)
+;;设置窗口位置为屏幕左上角(0,0)
 (set-frame-position (selected-frame) 0 0)
 
 (set-frame-width (selected-frame) 110)
@@ -34,6 +38,10 @@
 ;; set language environment
 (set-language-environment 'Chinese-GBK)
 (prefer-coding-system 'utf-8-unix)
+(prefer-coding-system 'utf-8)
+;; (set-buffer-file-coding-system 'utf-8)
+(setq system-time-locale "C")
+
 
 (provide 'init-preload-local)
 ;;; init-preload-local ends here
